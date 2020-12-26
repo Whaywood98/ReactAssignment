@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
 
 function RenderDish({dish}) {
@@ -31,10 +31,15 @@ function RenderComments({comments}) {
                     );
                 });
                 return (
-                    <div>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12 col-md-5 m-1">
                         <h3>Comments</h3>
                         <div>{dishComments}</div>
+                            </div>
+                        </div>
                     </div>
+
                 );
                         }
             else {
@@ -45,17 +50,18 @@ function RenderComments({comments}) {
 }
 
 const MenuDetail = (props) => {
-    if(props.dish != null)
-    return (
+    if (props.dish != null)
+        return (
             <div className="container">
                 <div className="row">
                     <div className="col-12 col-md-5 m-1">
-                        <RenderDish dish={props.dish}/>
-                        <RenderComments comments={props.dish.comments}/>
+                        <RenderDish dish={props.dish} />
+                        <RenderComments comments={props.dish.comments} />
                     </div>
                 </div>
             </div>
-            );
-    }
+        );
+    else return null;
+}
 
 export default MenuDetail;
