@@ -68,7 +68,7 @@ class Contact extends Component {
                     </div>
                     <div className="col-12 col-md-9">
                         <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
-                            <Row calssName="form-group">
+                            <Row className="form-group">
                             <Label htmlFor="firstname" md={2}>First Name</Label>
                             <Col md={10}>
                                     <Control.text model=".firstname" id="firstname" name="firstname"
@@ -90,7 +90,7 @@ class Contact extends Component {
                                         />
                             </Col>
                             </Row>
-                            <Row calssName="form-group">
+                            <Row className="form-group">
                                 <Label htmlFor="lastname" md={2}>Last Name</Label>
                                 <Col md={10}>
                                     <Control.text model=".lastname" id="lastname" name="lastname"
@@ -112,7 +112,7 @@ class Contact extends Component {
                                     />
                                 </Col>
                             </Row>
-                            <Row calssName="form-group">
+                            <Row className="form-group">
                                 <Label htmlFor="telnum" md={2}>Contact Tel.</Label>
                                 <Col md={10}>
                                     <Control.text model=".telnum" id="telnum" name="telnum"
@@ -134,7 +134,7 @@ class Contact extends Component {
                                     />
                                 </Col>
                             </Row>
-                            <Row calssName="form-group">
+                            <Row className="form-group">
                                 <Label htmlFor="email" md={2}>Email</Label>
                                 <Col md={10}>
                                     <Control.text model=".email" id="email" name="email"
@@ -156,7 +156,7 @@ class Contact extends Component {
 
                                 </Col>
                             </Row>
-                            <Row calssName="form-group">
+                            <Row className="form-group">
                                 <Col md={{ size: 6, offset: 2 }}>
                                     <div className="form-check">
                                         <Label check>
@@ -174,7 +174,7 @@ class Contact extends Component {
                                     </Control.select>
                                 </Col>
                             </Row>
-                            <Row calssName="form-group">
+                            <Row className="form-group">
                                 <Label htmlFor="message" md={2}>Your Feedback</Label>
                                 <Col md={10}>
                                     <Control.textarea model=".message" id="message" name="message"
@@ -182,14 +182,14 @@ class Contact extends Component {
                                         className="form-control"/>
                                 </Col>
                             </Row>
-                            <Row calssName="form-group">
+                            <Row className="form-group">
                                 <Col md={{ size: 10, offset: 2 }}>
                                     <Button type="submit" color="primary">
                                         Send Feedback
                                     </Button>
                                 </Col>
                             </Row>
-                    </LocalForm>
+                        </LocalForm>
                     </div>
                 </div>
             </div>
