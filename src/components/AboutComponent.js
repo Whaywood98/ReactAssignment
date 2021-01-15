@@ -1,16 +1,21 @@
 import React from 'react';
-import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Card, CardTitle, CardSubtitle, CardImg, CardText, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { FadeTransform } from 'react-animation-components';
+import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 function About(props) {
 
     const leaders = props.leaders.map((leader) => {
         return (
-            <p><RenderLeader leader={leader}/></p>
+            <p>
+                <RenderLeader leader={leader} />
+            </p>
         );
-    });
+                })
 
-    return (
+                return (
         <div className="container">
             <div className="row">
                 <Breadcrumb>
@@ -66,7 +71,7 @@ function About(props) {
                 </div>
                 <div className="col-12">
                     <Media list>
-                        {leaders}
+                           {leaders}
                     </Media>
                 </div>
             </div>
@@ -74,19 +79,36 @@ function About(props) {
     );
 }
 
-function RenderLeader({ leader }) {
-    return (
-        <Media>
-            <Media object src={leader.image} />
-            <Media body className="col">
-                <Media heading className="mb-12">
-                    {leader.name}
+function RenderLeader({ leader, isLoading, errMess }) {
+    if (isLoading) {
+        return (
+            <Loading />
+        );
+    }
+    else if (errMess) {
+        return (
+            <h4>{errMess}</h4>
+        );
+    }
+    else
+        return (
+            <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
+                <Media>
+                    <Media object src={baseUrl + leader.image} />
+                    <Media body className="col">
+                        <Media heading className="mb-12">
+                            {leader.name}
+                        </Media>
+                        <p>{leader.designation}</p>
+                        {leader.description}
+                    </Media>
                 </Media>
-                <p>{leader.designation}</p>
-                {leader.description}
-            </Media>
-        </Media>
-    );
+            </FadeTransform>
+        );
 }
 
 export default About;    

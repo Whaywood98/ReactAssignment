@@ -3,25 +3,32 @@ import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbIte
 import { Link } from 'react-router-dom';
 import CommentForm from './CommentFormComponent';
 import { Loading } from './LoadingComponent';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 import { baseUrl } from '../shared/baseUrl';
 
 function RenderDish({dish}) {
         if (dish != null) {
             return (
+                <FadeTransform
+                    in
+                    transformProps={{
+                        exitTransform: 'scale(0.5) translateY(-50%)'
+                    }}>
                 <Card>
                     <CardImg width="100%" top src={baseUrl + dish.image} alt={dish.name} />
                     <CardBody>
                         <CardTitle>{dish.name}</CardTitle>
                         <CardText>{dish.description}</CardText>
                     </CardBody>
-                </Card>
+                    </Card>
+                </FadeTransform>
             );
         } else {
             return (<div></div>);
         }
 }
 
-function RenderComments({comments, addComment, dishId}) {
+function RenderComments({comments, postComment, dishId}) {
             if (comments != null) {
                 const dishComments = comments.map((comment) => {
                     const date = new Date(comment.date);
@@ -34,16 +41,17 @@ function RenderComments({comments, addComment, dishId}) {
                     );
                 });
                 return (
+                    <Stagger in>
                     <div className="container">
                         <div className="row">
                             <div className="col-12 col-md-5 m-1">
                                 <h3>Comments</h3>
                                 <div>{dishComments}</div>
-                                <div>{<CommentForm dishId={dishId} addComment={addComment}/>}</div>
+                                <div>{<CommentForm dishId={dishId} postComment={postComment}/>}</div>
                             </div>
                         </div>
-                    </div>
-
+                        </div>
+                    </Stagger>
                 );
                         }
             else {
@@ -90,7 +98,7 @@ const MenuDetail = (props) => {
                     <div className="col-12 col-md-5 m-1">
                         <RenderDish dish={props.dish} />
                         <RenderComments comments={props.comments}
-                            addComment={props.addComment}
+                            postComment={props.postComment}
                             dishId={props.dish.id} />
                     </div>
                 </div>
